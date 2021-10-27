@@ -24,7 +24,7 @@ jobs:
         uses: wlixcc/SFTP-Deploy-Action@v1.2.1
         with:
           username: webphp80
-          server: htp://65.1.3.211
+          server: ftp://65.1.3.211
           port: 21 # default is 22
           password: ${{ secrets.PASS }}
  
