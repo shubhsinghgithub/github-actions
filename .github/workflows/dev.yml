@@ -8,12 +8,12 @@ jobs:
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
+    - name: Get latest code
+      uses: actions/checkout@v2
+      
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
         ftp-server: ftp://65.1.3.211
         ftp-username: webphp80
-        ftp-password: as12
+        ftp-password: ${{ secrets.as12 }}
