@@ -24,7 +24,7 @@ jobs:
         uses: wlixcc/SFTP-Deploy-Action@v1.2.1
         with:
           username: webphp80
-          server: ftp://65.1.3.211
+          server: 65.1.3.211
           port: 22
           password: as12
  
