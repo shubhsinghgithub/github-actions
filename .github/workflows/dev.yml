@@ -1,16 +1,17 @@
 on: push
 name: Publish Website
 jobs:
-  SFTP-Deploy-Action:
-    name: SFTP-Deploy-Action
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: SFTP-Deploy-Action
-      uses: SamKirkland/SFTP-Deploy-Action@2.0.0
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@2.0.0
       env:
         FTP_SERVER: 65.1.3.211
         FTP_USERNAME: webphp80@65.1.3.211
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        FTP_PORT: 22
         ARGS: --delete
         # --delete arg will delete files on the server if you've deleted them in git
