@@ -1,17 +1,34 @@
-on: push
-name: Publish Website
+# .github/workflows/ssh_deploy.yml
+
+name: Deploy Eleventy via SSH
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
 jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@2.0.0
-      env:
-        REMOTE_HOST: 65.1.3.211
-        REMOTE_USER: webphp80
-        SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        ARGS: -rltgoDzvO --exclude .git --exclude .github
-        TARGET: /home/webphp80/public_html
-        # --delete arg will delete files on the server if you've deleted them in git
+      # Checks-out your repository under $GITHUB_WORKSPACE, 
+      # so your workflow can access it
+      - uses: actions/checkout@master
+
+      # Build your static website with Eleventy
+      - name: Build Eleventy
+        uses: TartanLlama/actions-eleventy@master
+        with:
+          args: --output html
+          install_dependencies: true
+
+      # Copying files and artifacts via SSH
+      - name: Copying files to server
+        uses: appleboy/scp-action@master
+        with:
+          host: 651.3.211
+          username: webphp80
+          key: ${{ secrets.PRIVATE_KEY }}
+          rm: true
+          target: /home/webphp80/public_html
