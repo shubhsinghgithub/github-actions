@@ -1,34 +1,16 @@
-# .github/workflows/ssh_deploy.yml
-
-name: Deploy Eleventy via SSH
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
+name: remote ssh command
+on: [push]
 jobs:
+
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, 
-      # so your workflow can access it
-      - uses: actions/checkout@master
-
-      # Build your static website with Eleventy
-      - name: Build Eleventy
-        uses: TartanLlama/actions-eleventy@master
-        with:
-          args: --output html
-          install_dependencies: true
-
-      # Copying files and artifacts via SSH
-      - name: Copying files to server
-        uses: appleboy/scp-action@master
-        with:
-          host: 651.3.211
-          username: webphp80
-          key: ${{ secrets.PRIVATE_KEY }}
-          rm: true
-          target: /home/webphp80/public_html
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: ${{ secrets.FTP_PORT }}
+        script: whoami
