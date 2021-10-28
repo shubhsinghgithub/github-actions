@@ -9,7 +9,7 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
       env:
-        FTP_SERVER: 65.1.3.211
+        FTP_SERVER: sftp://65.1.3.211
         FTP_USERNAME: webphp80@65.1.3.211
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         FTP_PORT: 22
