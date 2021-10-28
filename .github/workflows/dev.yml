@@ -13,4 +13,4 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
         TARGET: /home/webphp80/public_html/
-        sync_tags: "true"
+        script: whoami
