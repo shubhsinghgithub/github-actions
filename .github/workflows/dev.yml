@@ -19,7 +19,7 @@ jobs:
         wget https://raw.githubusercontent.com/git-ftp/git-ftp/master/git-ftp && chmod +x git-ftp
         git config git-ftp.user "$User" && git config git-ftp.password "$Pass"
         git config git-ftp.url sftp://"$Host":"$Port"/home/webphp80/public_html/
-        ./git-ftp init --insecure --syncroot .
+        ./git-ftp push --insecure --syncroot .
         echo "Deployed Code Successfully on BlazinSafety Production Server"
   Command_Execution:
     name: Executing Comamand on Server
@@ -31,7 +31,7 @@ jobs:
       with:
         host: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.TP_PASSWORD }}
+        password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
         script: |
           cd /home/webphp80/public_html/ && echo "`date`" > testbl.txt
