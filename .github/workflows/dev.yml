@@ -23,7 +23,7 @@ jobs:
         echo "Deployed Code Successfully on BlazinSafety Production Server"
   Command_Execution:
     name: Executing Comamand on Server
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: Deploying_Code
     steps:
     - name: Establishing Connection to Server 
