@@ -29,10 +29,10 @@ jobs:
     - name: Establishing Connection to Server 
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        port: ${{ secrets.FTP_PORT }}
+        Host: ${{ secrets.FTP_SERVER }}
+        User: ${{ secrets.FTP_USERNAME }}
+        Pass: ${{ secrets.FTP_PASSWORD }}
+        Port: ${{ secrets.FTP_PORT }}
         script: |
           cd /home/wpweb/public_html/ && echo "`date`" > testbl.txt
           echo "Successfully Executed Command on BlazinSafety Production Server"
