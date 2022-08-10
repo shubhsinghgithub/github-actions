@@ -1,3 +1,4 @@
 hello test
 test 6-may-2022
 kubeadm join 31.7.62.62:6443 --token mdnw38.1vp0tcg42to82u93     --discovery-token-ca-cert-hash sha256:938712661f835adfeee4ce7b6c3e9252fa2045bb8eaee043cc3193d72f8c3ee7
+yum install -y docker-ce-19.03.12 
