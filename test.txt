@@ -1,0 +1,10 @@
+image: bitnami/git
+
+pipelines:
+  branches:
+   develop:
+    - step:
+        script:
+          - apt-get update
+          - apt-get -qq install git-ftp
+          - git ftp push --user $SFTP_USERNAME --passwd $SFTP_PASSWORD --insecure sftp://$SFTP_HOST:613/$SFTP_PATH/
